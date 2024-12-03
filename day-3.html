@@ -1,0 +1,34 @@
+<script>
+    let input = ''
+    async function getData() {
+        const url = "https://adventofcode.com/2024/day/3/input";
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+            }
+            const text = await response.text();
+            input = text
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+    await getData()
+    const regex = /mul\([0-9]{1,3},[0-9]{1,3}\)/g
+    const muls = input.match(regex)
+    console.log({muls})
+    let sum = 0
+    for (const mul of muls) {
+        const startIndex = mul.indexOf("(")
+        const middleIndex = mul.indexOf(",")
+        const endIndex = mul.indexOf(")")
+        // console.log(startIndex, middleIndex, endIndex)
+        const firstInt = mul.slice(startIndex + 1 , middleIndex)
+        const secondInt = mul.slice(middleIndex + 1, endIndex)
+        // console.log({firstInt})
+        // console.log({secondInt})
+        // console.log(firstInt * secondInt)
+        sum += firstInt * secondInt
+    }
+    console.log({sum})
+</script>
