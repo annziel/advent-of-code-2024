@@ -14,6 +14,8 @@
         }
     }
     await getData()
+    
+    // Aniowe
     const regex = /mul\([0-9]{1,3},[0-9]{1,3}\)/g
     const muls = input.match(regex)
     console.log({muls})
@@ -31,4 +33,15 @@
         sum += firstInt * secondInt
     }
     console.log({sum})
+
+    // Adamowe
+    (function() {
+        const regex = /mul\((?<left>[0-9]{1,3}),(?<right>[0-9]{1,3})\)/g
+        const muls = Array.from(input.matchAll(regex))
+        const results = muls.map((match)=>match.groups.left*match.groups.right)
+        let sum = 0;
+        for(const r of results) {
+            sum += r;
+        }
+    })();
 </script>
