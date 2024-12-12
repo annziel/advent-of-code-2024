@@ -1,26 +1,32 @@
 <script>
     let input = ''
-    async function getData() {
-        const url = "https://adventofcode.com/2024/day/3/input";
-        try {
-            const response = await fetch(url);
-            if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-            }
-            const text = await response.text();
-            input = text
-        } catch (error) {
-            console.error(error.message);
+    const url = "https://adventofcode.com/2024/day/3/input";
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
         }
+        const text = await response.text();
+        input = text
+    } catch (error) {
+        console.error(error.message);
     }
-    await getData()
     
     // Aniowe
-    const regex = /mul\([0-9]{1,3},[0-9]{1,3}\)/g
-    const muls = input.match(regex)
-    console.log({muls})
+    const mulRegex = /mul\([0-9]{1,3},[0-9]{1,3}\)/g
+    const doRegex = /do\(\)/
+    const dontRegex = /don't\(\)/
+
+    const expressions = input.match(mulRegex || doRegex || dontRegex)
+    console.log({expressions})
     let sum = 0
-    for (const mul of muls) {
+    expressions.forEach((exp, index) => {
+        if (exp.startsWith("mul")) {
+            if (expressions)
+
+        }
+    }) 
+        
         const startIndex = mul.indexOf("(")
         const middleIndex = mul.indexOf(",")
         const endIndex = mul.indexOf(")")
