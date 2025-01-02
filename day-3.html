@@ -12,21 +12,12 @@
         console.error(error.message);
     }
     
-    // Aniowe
-    const mulRegex = /mul\([0-9]{1,3},[0-9]{1,3}\)/g
-    const doRegex = /do\(\)/
-    const dontRegex = /don't\(\)/
-
-    const expressions = input.match(mulRegex || doRegex || dontRegex)
-    console.log({expressions})
+    // option 1 - part one works, changes for part 2
+    const regex = /mul\([0-9]{1,3},[0-9]{1,3}\)/g
+    const muls = input.match(regex)
+    console.log({muls})
     let sum = 0
-    expressions.forEach((exp, index) => {
-        if (exp.startsWith("mul")) {
-            if (expressions)
-
-        }
-    }) 
-        
+    for (const mul of muls) {
         const startIndex = mul.indexOf("(")
         const middleIndex = mul.indexOf(",")
         const endIndex = mul.indexOf(")")
@@ -40,7 +31,7 @@
     }
     console.log({sum})
 
-    // Adamowe
+    // option 2
     (function() {
         const regex = /mul\((?<left>[0-9]{1,3}),(?<right>[0-9]{1,3})\)/g
         const muls = Array.from(input.matchAll(regex))
