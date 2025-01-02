@@ -1065,7 +1065,7 @@ for (let i = 0; i<list1.length; i++) {
     const numToSearch = list1[i]
     if (numToSearch === previousNumToSearch) {
         distance += previousCheckedSimilarities
-        continue // iterate through the loop again - przechodzi do kolejnego przejścia pętli
+        continue // a new for loop
     }
     let count = 0
     for (; j <list2.length; j++) {
@@ -1080,6 +1080,5 @@ for (let i = 0; i<list1.length; i++) {
     previousNumToSearch = numToSearch
     previousCheckedSimilarities = similarity
 }
-
 
 console.log(distance)
