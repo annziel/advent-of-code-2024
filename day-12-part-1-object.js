@@ -144,21 +144,6 @@ const rows = input.split("\n")
 const rowsNumber = rows.length
 const rowLength = rows[0].length
 
-/*
-const obj = {
-    4: true,
-    5: true
-}
-0000101010010100101110000111001010101010101*000011*
---------------------------------------------^
-                                            45
-------------------------------------------------^
-                                            45+4=49
-if(obj[4]) {
-    // cośtam
-}
-*/
-
 
 let regions = []
 const checkedPoints = []
@@ -174,23 +159,23 @@ const checkedPoints = []
     checkedPoints[currentRow][currentIndex] = true;
 
     const currentPoint = rows[currentRow][currentIndex]
-    // w prawo
+    // right
     if (currentPoint === rows[currentRow][currentIndex + 1]) {
         currentRegion.border -= 1
         recurentio(currentRow, currentIndex + 1, currentRegion)
     }
-    // w dół
-    // Optional chaining (?.)
+    // down
+    // Optional chaining (?.) - returns undefined instead of throwing an error if a property or method of null or undefined
     if (currentPoint === rows[currentRow + 1]?.[currentIndex]) {
         currentRegion.border -= 1
         recurentio(currentRow + 1, currentIndex, currentRegion)
     }
-    // w lewo
+    // left
     if (currentPoint === rows[currentRow][currentIndex - 1]) {
         currentRegion.border -= 1
         recurentio(currentRow, currentIndex - 1, currentRegion)
     }
-    // w górę
+    // up
     // Optional chaining (?.)
     if (currentPoint === rows[currentRow - 1]?.[currentIndex]) {
         currentRegion.border -= 1

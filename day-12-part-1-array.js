@@ -155,23 +155,23 @@ let checkedPoints = []
     currentRegion.border += 4
     currentRegion.area += 1
     checkedPoints.push([currentRow,currentIndex])
-    // w prawo
+    // right
     if (currentPoint === rows[currentRow][currentIndex + 1]) {
         currentRegion.border -= 1
         recurentio(currentRow, currentIndex + 1, currentRegion)
     }
-    // w dół
-    // Optional chaining (?.)
+    // down
+    // Optional chaining (?.) - returns undefined instead of throwing an error if a property or method of null or undefined
     if (currentPoint === rows[currentRow + 1]?.[currentIndex]) {
         currentRegion.border -= 1
         recurentio(currentRow + 1, currentIndex, currentRegion)
     }
-    // w lewo
+    // left
     if (currentPoint === rows[currentRow][currentIndex - 1]) {
         currentRegion.border -= 1
         recurentio(currentRow, currentIndex - 1, currentRegion)
     }
-    // w górę
+    // up
     // Optional chaining (?.)
     if (currentPoint === rows[currentRow - 1]?.[currentIndex]) {
         currentRegion.border -= 1
