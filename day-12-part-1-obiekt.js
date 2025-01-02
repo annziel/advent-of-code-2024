@@ -144,17 +144,36 @@ const rows = input.split("\n")
 const rowsNumber = rows.length
 const rowLength = rows[0].length
 
-let regions = []
-let checkedPoints = []
+/*
+const obj = {
+    4: true,
+    5: true
+}
+0000101010010100101110000111001010101010101*000011*
+--------------------------------------------^
+                                            45
+------------------------------------------------^
+                                            45+4=49
+if(obj[4]) {
+    // cośtam
+}
+*/
 
+
+let regions = []
+const checkedPoints = []
  function recurentio(currentRow, currentIndex, currentRegion) {
-    const currentPoint = rows[currentRow][currentIndex]
-    if (checkedPoints.some(point => point[0] === currentRow && point[1] === currentIndex)) {
-        return
+    if ( checkedPoints[currentRow]?.[currentIndex]) {
+        return;
     }
     currentRegion.border += 4
     currentRegion.area += 1
-    checkedPoints.push([currentRow,currentIndex])
+    if(!(currentRow in checkedPoints)) {
+        checkedPoints[currentRow] = [];
+    }
+    checkedPoints[currentRow][currentIndex] = true;
+
+    const currentPoint = rows[currentRow][currentIndex]
     // w prawo
     if (currentPoint === rows[currentRow][currentIndex + 1]) {
         currentRegion.border -= 1
@@ -181,7 +200,8 @@ let checkedPoints = []
     return currentRegion
 }
 
-console.time("z arrayem");
+console.time("z obiektem");
+
 for (let i = 0; i < rowsNumber; i++) {
     for (let j = 0; j < rowLength; j++) {
         const region = recurentio(i, j, {area: 0, border: 0})
@@ -190,7 +210,7 @@ for (let i = 0; i < rowsNumber; i++) {
         }
     }
 }
-console.timeEnd("z arrayem");
+console.timeEnd("z obiektem");
 
 console.log({regions})
 
